@@ -11,5 +11,11 @@ describe Bike do
     bike.break
     expect(bike.broken?).to be true
   end
+  it 'should be able to get fixed' do
+    bike = Bike.new
+    bike.break
+    bike.fix
+    expect(bike.broken?).to be false
+  end
 
 end
