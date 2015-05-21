@@ -6,5 +6,10 @@ describe Bike do
     bike = Bike.new
     expect(bike.broken?).to be false
   end
+  it 'should be able to break' do
+    bike = Bike.new
+    bike.break
+    expect(bike.broken?).to be true
+  end
 
 end
