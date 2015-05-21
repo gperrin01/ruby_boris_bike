@@ -1,12 +1,14 @@
 require 'pry'
 require_relative '../lib/docking_station'
 require_relative '../lib/bike'
+require_relative '../lib/van'
 
 describe DockingStation do 
 
-  let(:station) {DockingStation.new}
+  # let(:station) {DockingStation.new}
   let(:station) { DockingStation.new(:capacity => 20) }
   let(:bike) { Bike.new }
+  let(:van) { Van.new }
 
   def fill_station(station)
     20.times{station.dock(Bike.new)}
@@ -38,6 +40,14 @@ describe DockingStation do
     station.dock(broken_bike)
     expect(station.available_bikes).to eq( [working_bike])
   end
+
+  it "should know when releasing bike to the van" do 
+    station.dock(bike)
+    van.load_broken(bike, station)
+    expect(station.bike_count).to eq 0
+  end
+
+
 
 end
 

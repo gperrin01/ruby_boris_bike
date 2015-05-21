@@ -27,5 +27,9 @@ class DockingStation
     @bikes.reject{|bike| bike.broken?}
   end
 
+  # def load_van(van, bike)
+  #   release(bike)
+  # end
+
 
 end
