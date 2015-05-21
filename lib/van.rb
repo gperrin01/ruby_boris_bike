@@ -1,6 +1,8 @@
 class Van
   DEFAULT_CAPACITY = 20
 
+  attr_accessor :bikes
+
   def initialize(options={})
     @bikes = []
     @capacity  = options.fetch(:capacity, DEFAULT_CAPACITY)
@@ -28,6 +30,13 @@ class Van
 
   def full?
     bike_count == @capacity
+  end
+
+  def fixed_bikes
+    @bikes.reject{|bike| bike.broken?}
+  end
+  def broken_bikes
+    @bikes.select{|bike| bike.broken?}
   end
 
 

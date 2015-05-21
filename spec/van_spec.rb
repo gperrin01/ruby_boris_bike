@@ -29,9 +29,14 @@ describe Van do
     expect { van.load_broken(working_bike, station) }.to raise_error RuntimeError 
   end
   it "can release bikes back to the station" do 
-    bike.break
-    van.load_broken(bike, station)
-    bike.fix
+    # bike.break
+    # van.load_broken(bike, station)
+    # bike.fix
+    # van.unload_fixed(bike, station)
+    # bike = Bike.new
+    # bike = Bike.new
+    # binding.pry
+    van.bikes << bike
     van.unload_fixed(bike, station)
     expect(van.bike_count).to eq 0
   end
@@ -45,8 +50,14 @@ describe Van do
     expect{van.unload_fixed(bike, station)}.to raise_error RuntimeError
   end
 
-  # it "should know what bikes are fixed and broken" do
-  # end
+  it "should give list of fixed and broken bikes" do
+    working_bike, broken_bike = Bike.new, Bike.new
+    broken_bike.break
+    van.bikes << working_bike << broken_bike
+    expect(van.fixed_bikes).to eq ([working_bike])
+    expect(van.broken_bikes).to eq ([broken_bike])
+  end
+
 
   ## general stuff
   it 'should know when reaches full capacity' do
