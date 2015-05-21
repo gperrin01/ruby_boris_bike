@@ -11,6 +11,8 @@ class DockingStation
   end
 
   def dock(bike)
+    # how to raise an error
+    raise "Station is full" if full?
     @bikes << bike
   end
   def release(bike)
@@ -19,6 +21,10 @@ class DockingStation
 
   def full?
     bike_count == @capacity 
+  end
+
+  def available_bikes
+    @bikes.reject{|bike| bike.broken?}
   end
 
 
